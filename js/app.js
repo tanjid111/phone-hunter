@@ -47,7 +47,7 @@ const displayPhone = (phones) => {
     }
 }
 
-phoneDetails = (phoneId) => {
+const phoneDetails = (phoneId) => {
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`
     fetch(url)
         .then(res => res.json())
@@ -62,45 +62,42 @@ const displayPhoneDetail = (phoneInfo) => {
     div.classList.add('card');
     // div.classList.add('text-center');
 
+
     div.innerHTML = `
     <img src="${phoneInfo.image}" class="card-img-top pt-2 w-25 mx-auto" alt="...">
             <div class="card-body">
                     <h5 class="card-title">${phoneInfo.brand}</h5>
                     <h5 class="card-title">${phoneInfo.name}</h5>
-                    <p>Released date: noReleaseDate(${phoneInfo.releaseDate})</p>
-                    <p id="error-message3" class="text-danger">No release date found</p>
-                <div class="row row-cols-md-2">
-                    <div class="col">
-                        <h5 class="card-title">Features:</h5>
-                        <div>
-                            <ul class="list-group">
-                                <li class="list-group-item">${phoneInfo.mainFeatures.chipSet}</li>
-                                <li class="list-group-item">${phoneInfo.mainFeatures.displaySize}</li>
-                                <li class="list-group-item">${phoneInfo.mainFeatures.memory}</li>
-                                <li class="list-group-item">${phoneInfo.mainFeatures.storage}</li>               
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <h5 class="card-title">Other Features:</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item">${phoneInfo.others.Bluetooth}</li>
-                            <li class="list-group-item">${phoneInfo.others.GPS}</li>
-                            <li class="list-group-item">${phoneInfo.others.NFC}</li>
-                            <li class="list-group-item">${phoneInfo.others.Radio}</li>
-                            <li class="list-group-item">${phoneInfo.others.USB}</li>
-                            <li class="list-group-item">${phoneInfo.others.WLAN}</li>
-                        </ul>
-                    </div>
-                </div>
+                    <p>Released date:${phoneInfo.releaseDate ? phoneInfo.releaseDate : ' No release date found'}</p>
+
+    <div class="row row-cols-md-2">
+        <div class="col">
+            <h5 class="card-title">Features:</h5>
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item"><span class="fw-bolder"> Chipset:</span> ${phoneInfo.mainFeatures.chipSet}</li>
+                    <li class="list-group-item"><span class="fw-bolder">Display Size:</span> ${phoneInfo.mainFeatures.displaySize}</li>
+                    <li class="list-group-item"><span class="fw-bolder">Memory:</span> ${phoneInfo.mainFeatures.memory}</li>
+                    <li class="list-group-item"><span class="fw-bolder">Storage:</span> ${phoneInfo.mainFeatures.storage}</li>
+                    <li class="list-group-item"><span class="fw-bolder">Sensors:</span> ${phoneInfo.mainFeatures.sensors}</li>
+                </ul>
             </div>
+        </div>
+        <div class="col">
+            <h5 class="card-title">Other Features:</h5>
+            <ul class="list-group">
+                <li class="list-group-item"><span class="fw-bolder"> Bluetooth:</span> ${phoneInfo.others?.Bluetooth}</li>
+                <li class="list-group-item"><span class="fw-bolder"> GPS:</span> ${phoneInfo.others?.GPS}</li>
+                <li class="list-group-item"><span class="fw-bolder"> NFC:</span> ${phoneInfo.others?.NFC}</li>
+                <li class="list-group-item"><span class="fw-bolder"> Radio:</span> ${phoneInfo.others?.Radio}</li>
+                <li class="list-group-item"><span class="fw-bolder"> USB:</span> ${phoneInfo.others?.USB}</li>
+                <li class="list-group-item"><span class="fw-bolder"> Wifi:</span> ${phoneInfo.others?.WLAN}</li>
+            </ul>
+        </div>
+    </div>
+            </div >
     `
     phoneDetail.appendChild(div);
-
-    if (phoneInfo.releaseDate === 0) {
-        document.getElementById('error-message3').style.display = 'block';
-    }
-
 }
 //display all phones function is defined
 // const searchPhoneAll = (phones) => {
