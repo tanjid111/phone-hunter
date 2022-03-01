@@ -17,9 +17,28 @@
     <link rel="stylesheet" href="/style/style.css">
 </head>
 
-<body>
-    <h1>Phone Database</h1>
+<body class="bg-gray container mx-auto">
+    <!------------------------------------------------------------------------------------------------------------------------
+                                                                 TITLE 
+    --------------------------------------------------------------------------------------------------------------------------->
+    <h1 class="text-center text-success">Phone Database</h1>
+    <!------------------------------------------------------------------------------------------------------------------------
+                                                                 CARDS SEARCH
+    --------------------------------------------------------------------------------------------------------------------------->
+    <div class="input-group mb-3 w-50 mx-auto">
+        <input id="search-field" type="text" class="form-control" placeholder="Search the phone you are looking for"
+            aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button onclick="searchPhone()" class="btn btn-outline-secondary" type="button"
+            id="button-search">Search</button>
+    </div>
 
+    <!------------------------------------------------------------------------------------------------------------------------
+                                                            ERROR HANDLING
+    --------------------------------------------------------------------------------------------------------------------------->
+    <div>
+        <h2 id="error-message1" class="text-danger">Please write something to display</h2>
+        <h2 id="error-message2" class="text-danger">No Result Found</h2>
+    </div>
     <!------------------------------------------------------------------------------------------------------------------------
                                                                  JS SCRYPT 
     --------------------------------------------------------------------------------------------------------------------------->
