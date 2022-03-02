@@ -1,30 +1,46 @@
-//search phone function is defined
+
+//---------------------------------------search phone function is defined-----------------------------------------------//
 const searchPhone = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     searchField.value = '';
     // console.log(searchText);
+
+    // Error validation Start
     if (searchText == '') {
         document.getElementById('error-message1').style.display = 'block';
+        const searchResult = document.getElementById('search-result');
+        searchResult.innerHTML = '';
+        const phoneDetail = document.getElementById('phone-detail');
+        phoneDetail.textContent = '';
+        // Error validation End
     }
     else {
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
         fetch(url)
             .then(res => res.json())
             .then(searchResult => displayPhone(searchResult.data))
+
         document.getElementById('error-message1').style.display = 'none';
     }
 }
 
-//display 20 phones function is defined
+//---------------------------display all phones function is defined-----------------------------------------------//
 const displayPhone = (phones) => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
     // console.log(phones);
+
+    //---------------------------Find and display 20 phones function is defined-----------------------------------------------//
     const first20Phones = phones.slice(0, 20);
     // console.log(first20Phones);
+
+    // Error validation Start
     if (phones.length === 0) {
         document.getElementById('error-message2').style.display = 'block';
+        const phoneDetail = document.getElementById('phone-detail');
+        phoneDetail.textContent = '';
+        // Error validation End
     }
     else {
         first20Phones.forEach(phone => {
@@ -46,23 +62,21 @@ const displayPhone = (phones) => {
         })
     }
 }
-
+//---------------------------individual phone function is defined-----------------------------------------------//
 const phoneDetails = (phoneId) => {
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`
     fetch(url)
         .then(res => res.json())
         .then(phoneData => displayPhoneDetail(phoneData.data))
 }
-
+//---------------------------individual phone display function is defined-----------------------------------------------//
 const displayPhoneDetail = (phoneInfo) => {
-    console.log(phoneInfo);
+    // console.log(phoneInfo);
     const phoneDetail = document.getElementById('phone-detail');
     phoneDetail.textContent = '';
+
     const div = document.createElement('div');
     div.classList.add('card');
-    // div.classList.add('text-center');
-
-
     div.innerHTML = `
     <img src="${phoneInfo.image}" class="card-img-top pt-2 w-25 mx-auto" alt="...">
             <div class="card-body">
@@ -86,12 +100,12 @@ const displayPhoneDetail = (phoneInfo) => {
         <div class="col">
             <h5 class="card-title">Other Features:</h5>
             <ul class="list-group">
-                <li class="list-group-item"><span class="fw-bolder"> Bluetooth:</span> ${phoneInfo.others?.Bluetooth}</li>
-                <li class="list-group-item"><span class="fw-bolder"> GPS:</span> ${phoneInfo.others?.GPS}</li>
-                <li class="list-group-item"><span class="fw-bolder"> NFC:</span> ${phoneInfo.others?.NFC}</li>
-                <li class="list-group-item"><span class="fw-bolder"> Radio:</span> ${phoneInfo.others?.Radio}</li>
-                <li class="list-group-item"><span class="fw-bolder"> USB:</span> ${phoneInfo.others?.USB}</li>
-                <li class="list-group-item"><span class="fw-bolder"> Wifi:</span> ${phoneInfo.others?.WLAN}</li>
+                <li class="list-group-item"><span class="fw-bolder"> Bluetooth:</span> ${phoneInfo.others?.Bluetooth ? phoneInfo.others.Bluetooth : 'No features'}</li>
+                <li class="list-group-item"><span class="fw-bolder"> GPS:</span> ${phoneInfo.others?.GPS ? phoneInfo.others.GPS : 'No features'}</li>
+                <li class="list-group-item"><span class="fw-bolder"> NFC:</span> ${phoneInfo.others?.NFC ? phoneInfo.others.NFC : 'No features'}</li>
+                <li class="list-group-item"><span class="fw-bolder"> Radio:</span> ${phoneInfo.others?.Radio ? phoneInfo.others.Radio : 'No features'}</li>
+                <li class="list-group-item"><span class="fw-bolder"> USB:</span> ${phoneInfo.others?.USB ? phoneInfo.others.USB : 'No features'}</li>
+                <li class="list-group-item"><span class="fw-bolder"> Wifi:</span> ${phoneInfo.others?.WLAN ? phoneInfo.others.WLAN : 'No features'}</li>
             </ul>
         </div>
     </div>
@@ -99,8 +113,3 @@ const displayPhoneDetail = (phoneInfo) => {
     `
     phoneDetail.appendChild(div);
 }
-//display all phones function is defined
-// const searchPhoneAll = (phones) => {
-// }
-{/* <p class="card-text">${meal.strInstructions.slice(0, 150)}</p>
-                <a href="${meal.strYoutube}" class="btn btn-primary">Go somewhere</a> */}
