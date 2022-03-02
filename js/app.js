@@ -1,8 +1,14 @@
 
 //---------------------------------------search phone function is defined-----------------------------------------------//
+const toggleSpinner = displayStyle => {
+    document.getElementById('spinner').style.display = displayStyle;
+}
+
 const searchPhone = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
+    //display spinner
+    toggleSpinner('block');
     searchField.value = '';
     // console.log(searchText);
 
@@ -59,7 +65,9 @@ const displayPhone = (phones) => {
             </div>
             `;
             searchResult.appendChild(div);
-        })
+        });
+        //turn off spinner
+        toggleSpinner('none');
     }
 }
 //---------------------------individual phone function is defined-----------------------------------------------//
