@@ -19,6 +19,8 @@ const searchPhone = () => {
         searchResult.innerHTML = '';
         const phoneDetail = document.getElementById('phone-detail');
         phoneDetail.textContent = '';
+        //turn off spinner
+        toggleSpinner('none');
         // Error validation End
     }
     else {
@@ -44,6 +46,8 @@ const displayPhone = (phones) => {
     // Error validation Start
     if (phones.length === 0) {
         document.getElementById('error-message2').style.display = 'block';
+        //turn off spinner
+        toggleSpinner('none');
         const phoneDetail = document.getElementById('phone-detail');
         phoneDetail.textContent = '';
         // Error validation End
