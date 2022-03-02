@@ -74,7 +74,6 @@ const displayPhoneDetail = (phoneInfo) => {
     // console.log(phoneInfo);
     const phoneDetail = document.getElementById('phone-detail');
     phoneDetail.textContent = '';
-
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
