@@ -7,6 +7,8 @@ const toggleSpinner = displayStyle => {
 const searchPhone = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
+    const phoneDetail = document.getElementById('phone-detail');
+    phoneDetail.textContent = '';
     //display spinner
     toggleSpinner('block');
     searchField.value = '';
@@ -15,6 +17,7 @@ const searchPhone = () => {
     // Error validation Start
     if (searchText == '') {
         document.getElementById('error-message1').style.display = 'block';
+        document.getElementById('error-message2').style.display = 'none';
         const searchResult = document.getElementById('search-result');
         searchResult.innerHTML = '';
         const phoneDetail = document.getElementById('phone-detail');
